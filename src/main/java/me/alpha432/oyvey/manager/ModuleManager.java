@@ -87,6 +87,10 @@ public class ModuleManager
         this.modules.add(new AutoMinecart());
         this.modules.add(new SelfFill());
         this.modules.add(new ArrowESP());
+        this.modules.add(new FastExp());
+        this.modules.add(new NoRender());
+        this.modules.add(new Freecam());
+        this.modules.add(new PortalESP());
     }
 
     public Module getModuleByName(String name) {

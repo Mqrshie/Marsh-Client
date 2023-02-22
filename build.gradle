@@ -16,6 +16,10 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
+
+    tasks.withType(JavaExec) {
+        jvmArgs('-Xmx4g') // Increase heap size to 4 GB
+    }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class FakePlayer
         extends Module {
-    private final String name = "NiggaHack.me";
+    private final String name = "MqrshieOnTop";
     private EntityOtherPlayerMP _fakePlayer;
 
     public FakePlayer() {
