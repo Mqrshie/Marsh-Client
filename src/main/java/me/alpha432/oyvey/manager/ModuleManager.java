@@ -93,7 +93,7 @@ public class ModuleManager
         this.modules.add(new PortalESP());
         this.modules.add(new DonkeyFinder());
         this.modules.add(new AutoTotem());
-        //e
+
     }
 
     public Module getModuleByName(String name) {

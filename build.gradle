@@ -18,7 +18,7 @@ buildscript {
     }
 
     tasks.withType(JavaExec) {
-        jvmArgs('-Xmx4g') // Increase heap size to 4 GB
+        jvmArgs('-Xmx3g') // Increase heap size to 3 GB
     }
 }
 
