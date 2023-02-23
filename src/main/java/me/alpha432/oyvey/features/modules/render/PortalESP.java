@@ -13,8 +13,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PortalESP
-        extends Module {
+public class PortalESP extends Module {
     private final ArrayList<BlockPos> blockPosArrayList = new ArrayList();
     private final Setting<Integer> distance = this.register(new Setting<Integer>("Distance", 60, 10, 100));
     private final Setting<Boolean> box = this.register(new Setting<Boolean>("Box", false));
@@ -56,14 +55,12 @@ public class PortalESP
         }
         for (int x = (int) PortalESP.mc.player.posX - this.distance.getValue(); x <= (int) PortalESP.mc.player.posX + this.distance.getValue(); ++x) {
             for (int y = (int) PortalESP.mc.player.posY - this.distance.getValue(); y <= (int) PortalESP.mc.player.posY + this.distance.getValue(); ++y) {
-                int z = (int) Math.max(PortalESP.mc.player.posZ - (double) this.distance.getValue().intValue(), 0.0);
-                while ((double) z <= Math.min(PortalESP.mc.player.posZ + (double) this.distance.getValue().intValue(), 255.0)) {
+                for (int z = (int) PortalESP.mc.player.posZ - this.distance.getValue(); z <= (int) PortalESP.mc.player.posZ + this.distance.getValue(); ++z) {
                     BlockPos pos = new BlockPos(x, y, z);
                     Block block = PortalESP.mc.world.getBlockState(pos).getBlock();
                     if (block instanceof BlockPortal) {
                         this.blockPosArrayList.add(pos);
                     }
-                    ++z;
                 }
             }
         }

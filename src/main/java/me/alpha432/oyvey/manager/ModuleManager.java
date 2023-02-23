@@ -94,6 +94,7 @@ public class ModuleManager
         this.modules.add(new DonkeyFinder());
         this.modules.add(new AutoTotem());
 
+
     }
 
     public Module getModuleByName(String name) {
