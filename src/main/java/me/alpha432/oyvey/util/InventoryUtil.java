@@ -4,6 +4,7 @@ import me.alpha432.oyvey.OyVey;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
@@ -20,6 +21,60 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class InventoryUtil
         implements Util {
+
+    public static int offhandSlot;
+
+    public static int findHotbarBlock(final Block blockIn) {
+        for (int i = 0; i < 9; ++i) {
+            final ItemStack stack = InventoryUtil.mc.player.inventory.getStackInSlot(i);
+            final Block block;
+            if (stack != ItemStack.EMPTY && stack.getItem() instanceof ItemBlock && (block = ((ItemBlock) stack.getItem()).getBlock()) == blockIn) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int findHotbarBlockWithClass(final Class clazz) {
+        for (int i = 0; i < 9; ++i) {
+            final ItemStack stack = InventoryUtil.mc.player.inventory.getStackInSlot(i);
+            if (stack != ItemStack.EMPTY && stack.getItem() instanceof ItemBlock && ((ItemBlock) stack.getItem()).getBlock().getClass().equals(clazz)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int getItemHotbar(final Item input) {
+        for (int i = 0; i < 9; ++i) {
+            final Item item = InventoryUtil.mc.player.inventory.getStackInSlot(i).getItem();
+            if (Item.getIdFromItem(item) == Item.getIdFromItem(input)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void moveItemTo(final int item, final int empty) {
+        InventoryUtil.mc.playerController.windowClick(InventoryUtil.mc.player.inventoryContainer.windowId, item, 0, ClickType.PICKUP, (EntityPlayer) InventoryUtil.mc.player);
+        InventoryUtil.mc.playerController.windowClick(InventoryUtil.mc.player.inventoryContainer.windowId, empty, 0, ClickType.PICKUP, (EntityPlayer) InventoryUtil.mc.player);
+        InventoryUtil.mc.playerController.windowClick(InventoryUtil.mc.player.inventoryContainer.windowId, item, 0, ClickType.PICKUP, (EntityPlayer) InventoryUtil.mc.player);
+        InventoryUtil.mc.playerController.updateController();
+    }
+
+    public static void moveItem(final int item) {
+        InventoryUtil.mc.playerController.windowClick(InventoryUtil.mc.player.inventoryContainer.windowId, item, 0, ClickType.QUICK_MOVE, (EntityPlayer) InventoryUtil.mc.player);
+        InventoryUtil.mc.playerController.updateController();
+    }
+
+    public static void dropItem(final int item) {
+        InventoryUtil.mc.playerController.windowClick(InventoryUtil.mc.player.inventoryContainer.windowId, item, 0, ClickType.THROW, (EntityPlayer) InventoryUtil.mc.player);
+        InventoryUtil.mc.playerController.updateController();
+    }
+
+    static {
+        InventoryUtil.offhandSlot = 45;
+    }
     public static void switchToHotbarSlot(int slot, boolean silent) {
         if (InventoryUtil.mc.player.inventory.currentItem == slot || slot < 0) {
             return;
@@ -60,25 +115,7 @@ public class InventoryUtil
         return -1;
     }
 
-    public static int findHotbarBlock(Block blockIn) {
-        for (int i = 0; i < 9; ++i) {
-            Block block;
-            ItemStack stack = InventoryUtil.mc.player.inventory.getStackInSlot(i);
-            if (stack == ItemStack.EMPTY || !(stack.getItem() instanceof ItemBlock) || (block = ((ItemBlock) stack.getItem()).getBlock()) != blockIn)
-                continue;
-            return i;
-        }
-        return -1;
-    }
 
-    public static int getItemHotbar(Item input) {
-        for (int i = 0; i < 9; ++i) {
-            Item item = InventoryUtil.mc.player.inventory.getStackInSlot(i).getItem();
-            if (Item.getIdFromItem(item) != Item.getIdFromItem(input)) continue;
-            return i;
-        }
-        return -1;
-    }
 
     public static int findStackInventory(Item input) {
         return InventoryUtil.findStackInventory(input, false);
@@ -418,7 +455,13 @@ public class InventoryUtil
 
         public boolean isSwitching() {
             return !this.update;
+
+
+
         }
+
+
+
     }
 }
 
