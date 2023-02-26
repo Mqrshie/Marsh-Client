@@ -10,6 +10,7 @@ import me.alpha432.oyvey.features.command.Command;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import org.apache.commons.io.IOUtils;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -21,6 +22,10 @@ import java.util.*;
 
 public class PlayerUtil implements Util {
     private static final JsonParser PARSER = new JsonParser();
+
+    public static BlockPos getPlayerPos() {
+        return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
+    }
 
     public static String getNameFromUUID(UUID uuid) {
         try {

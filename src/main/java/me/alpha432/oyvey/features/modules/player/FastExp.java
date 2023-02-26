@@ -1,10 +1,10 @@
 package me.alpha432.oyvey.features.modules.player;
 
-        import net.minecraft.init.Items;
-        import me.alpha432.oyvey.features.modules.Module;
+import net.minecraft.init.Items;
+import me.alpha432.oyvey.features.modules.Module;
 
 
-        public class FastExp extends Module {
+public class FastExp extends Module {
 
 
         public FastExp() {

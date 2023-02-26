@@ -25,6 +25,7 @@ public class CommandManager
         this.commands.add(new ReloadCommand());
         this.commands.add(new UnloadCommand());
         this.commands.add(new ReloadSoundCommand());
+        this.commands.add(new BingCommand());
     }
 
     public static String[] removeElement(String[] input, int indexToDelete) {

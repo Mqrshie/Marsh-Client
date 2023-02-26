@@ -14,6 +14,12 @@ public class MathUtil
         implements Util {
     private static final Random random = new Random();
 
+    public static float[] calcAngleNoY(final Vec3d from, final Vec3d to) {
+        final double difX = to.x - from.x;
+        final double difZ = to.z - from.z;
+        return new float[]{(float) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difZ, difX)) - 90.0)};
+    }
+
     public static int getRandom(int min, int max) {
         return min + random.nextInt(max - min + 1);
     }

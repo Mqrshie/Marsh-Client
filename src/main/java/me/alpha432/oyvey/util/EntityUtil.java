@@ -31,6 +31,7 @@ import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.MovementInput;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -60,6 +61,7 @@ public class EntityUtil
             EntityUtil.mc.player.swingArm(EnumHand.MAIN_HAND);
         }
     }
+
 
     public static Vec3d interpolateEntity(Entity entity, float time) {
         return new Vec3d(entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) time, entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) time, entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) time);
@@ -98,6 +100,7 @@ public class EntityUtil
         }
         return entity instanceof EntityIronGolem && ((EntityIronGolem) entity).getRevengeTarget() == null;
     }
+
 
     public static boolean isSafe(Entity entity, int height, boolean floor) {
         return EntityUtil.getUnsafeBlocks(entity, height, floor).size() == 0;
@@ -646,8 +649,30 @@ public class EntityUtil
         return output;
     }
 
+
     public static boolean isAboveBlock(Entity entity, BlockPos blockPos) {
         return entity.posY >= (double) blockPos.getY();
+    }
+
+    public static boolean isInLiquid() {
+        if (mc.player.fallDistance >= 3.0f) {
+            return false;
+        }
+        boolean inLiquid = false;
+        final AxisAlignedBB bb = (mc.player.getRidingEntity() != null) ? mc.player.getRidingEntity().getEntityBoundingBox() : mc.player.getEntityBoundingBox();
+        final int y = (int) bb.minY;
+        for (int x = MathHelper.floor(bb.minX); x < MathHelper.floor(bb.maxX) + 1; ++x) {
+            for (int z = MathHelper.floor(bb.minZ); z < MathHelper.floor(bb.maxZ) + 1; ++z) {
+                final Block block = mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
+                if (!(block instanceof BlockAir)) {
+                    if (!(block instanceof BlockLiquid)) {
+                        return false;
+                    }
+                    inLiquid = true;
+                }
+            }
+        }
+        return inLiquid;
     }
 }
 
