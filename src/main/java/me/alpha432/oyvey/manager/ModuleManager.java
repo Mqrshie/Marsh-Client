@@ -88,14 +88,12 @@ public class ModuleManager
         this.modules.add(new SelfFill());
         this.modules.add(new ArrowESP());
         this.modules.add(new FastExp());
-        this.modules.add(new NoRender());
         this.modules.add(new Freecam());
         this.modules.add(new PortalESP());
         this.modules.add(new DonkeyFinder());
         this.modules.add(new AutoTotem());
         this.modules.add(new HoleSnap());
         this.modules.add(new GreenText());
-        this.modules.add(new QueueSkip());
 
 
     }
