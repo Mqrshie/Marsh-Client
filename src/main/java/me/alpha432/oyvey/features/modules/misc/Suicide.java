@@ -6,7 +6,7 @@ import net.minecraft.network.play.client.CPacketChatMessage;
 
 public class Suicide extends Module {
     public Suicide() {
-        super("suicide", "for lazy ppl who cant type /kill", Category.MISC, true, false, false);
+        super("Suicide", "for lazy ppl who cant type /kill", Category.MISC, true, false, false);
 
     }
 

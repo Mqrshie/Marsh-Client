@@ -97,6 +97,8 @@ public class ModuleManager
         this.modules.add(new AutoLog());
         this.modules.add(new Velocity());
         this.modules.add(new Suicide());
+        this.modules.add(new MobOwner());
+        this.modules.add(new FullBright());
     }
 
     public Module getModuleByName(String name) {
