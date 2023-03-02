@@ -91,6 +91,34 @@ public class EntityUtil
         return EntityUtil.getInterpolatedAmount(entity, partialTicks, partialTicks, partialTicks);
     }
 
+    public static boolean holding32k(final EntityPlayer player) {
+        return is32k(player.getHeldItemMainhand());
+    }
+
+    public static boolean checkForLiquid(final Entity entity, final boolean b) {
+        if (entity == null) {
+            return false;
+        }
+        final double posY = entity.posY;
+        double n;
+        if (b) {
+            n = 0.03;
+        } else if (entity instanceof EntityPlayer) {
+            n = 0.2;
+        } else {
+            n = 0.5;
+        }
+        final double n2 = posY - n;
+        for (int i = MathHelper.floor(entity.posX); i < MathHelper.ceil(entity.posX); ++i) {
+            for (int j = MathHelper.floor(entity.posZ); j < MathHelper.ceil(entity.posZ); ++j) {
+                if (mc.world.getBlockState(new BlockPos(i, MathHelper.floor(n2), j)).getBlock() instanceof BlockLiquid) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static boolean isPassive(Entity entity) {
         if (entity instanceof EntityWolf && ((EntityWolf) entity).isAngry()) {
             return false;
@@ -650,8 +678,45 @@ public class EntityUtil
     }
 
 
+
+    public static boolean isOnLiquid(final double offset) {
+        if (mc.player.fallDistance >= 3.0f) {
+            return false;
+        }
+        final AxisAlignedBB bb = (mc.player.getRidingEntity() != null) ? mc.player.getRidingEntity().getEntityBoundingBox().contract(0.0, 0.0, 0.0).offset(0.0, -offset, 0.0) : mc.player.getEntityBoundingBox().contract(0.0, 0.0, 0.0).offset(0.0, -offset, 0.0);
+        boolean onLiquid = false;
+        final int y = (int) bb.minY;
+        for (int x = MathHelper.floor(bb.minX); x < MathHelper.floor(bb.maxX + 1.0); ++x) {
+            for (int z = MathHelper.floor(bb.minZ); z < MathHelper.floor(bb.maxZ + 1.0); ++z) {
+                final Block block = mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
+                if (block != Blocks.AIR) {
+                    if (!(block instanceof BlockLiquid)) {
+                        return false;
+                    }
+                    onLiquid = true;
+                }
+            }
+        }
+        return onLiquid;
+    }
+
     public static boolean isAboveBlock(Entity entity, BlockPos blockPos) {
         return entity.posY >= (double) blockPos.getY();
+    }
+
+    public static boolean isAboveLiquid(final Entity entity) {
+        if (entity == null) {
+            return false;
+        }
+        final double n = entity.posY + 0.01;
+        for (int i = MathHelper.floor(entity.posX); i < MathHelper.ceil(entity.posX); ++i) {
+            for (int j = MathHelper.floor(entity.posZ); j < MathHelper.ceil(entity.posZ); ++j) {
+                if (mc.world.getBlockState(new BlockPos(i, (int) n, j)).getBlock() instanceof BlockLiquid) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static boolean isInLiquid() {

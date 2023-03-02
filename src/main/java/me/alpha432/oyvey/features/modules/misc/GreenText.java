@@ -18,7 +18,7 @@ public class GreenText extends Module {
         if (event.getStage() == 0 && event.getPacket() instanceof CPacketChatMessage) {
             CPacketChatMessage packet = event.getPacket();
             String s = packet.getMessage();
-            if (s.startsWith("/") || s.startsWith("\u003e ")) { // don't add the prefix if it already exists
+            if (s.startsWith("/")) {
                 return;
             }
             s = "\u003e " + s;
@@ -31,6 +31,8 @@ public class GreenText extends Module {
 
     @SubscribeEvent
     public void onChatPacketReceive(PacketEvent.Receive event) {
-        // do nothing
+        if (event.getStage() == 0) {
+            event.getPacket();
+        }// empty if block
     }
 }

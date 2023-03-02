@@ -102,7 +102,7 @@ public class HoleFiller extends Module {
             }
         }
         this.holes.forEach(this::placeBlock);
-        this.toggle();
+        this.toggle(silent);
     }
 
     private void placeBlock(final BlockPos pos) {
@@ -115,7 +115,7 @@ public class HoleFiller extends Module {
             final int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
             final int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
             if (obbySlot == -1 && eChestSot == -1) {
-                this.toggle();
+                this.toggle(silent);
             }
             final int originalSlot = HoleFiller.mc.player.inventory.currentItem;
             HoleFiller.mc.player.inventory.currentItem = ((obbySlot == -1) ? eChestSot : obbySlot);

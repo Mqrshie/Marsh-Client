@@ -3,6 +3,7 @@ package me.alpha432.oyvey.util;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
@@ -34,6 +35,27 @@ public class RotationUtil
         pitch = pitch * 180.0 / Math.PI;
         yaw = yaw * 180.0 / Math.PI;
         return new double[]{yaw += 90.0, pitch};
+    }
+
+    public static float[] simpleFacing(EnumFacing facing) {
+        switch (facing) {
+            case DOWN: {
+                return new float[]{RotationUtil.mc.player.rotationYaw, 90.0f};
+            }
+            case UP: {
+                return new float[]{RotationUtil.mc.player.rotationYaw, -90.0f};
+            }
+            case NORTH: {
+                return new float[]{180.0f, 0.0f};
+            }
+            case SOUTH: {
+                return new float[]{0.0f, 0.0f};
+            }
+            case WEST: {
+                return new float[]{90.0f, 0.0f};
+            }
+        }
+        return new float[]{270.0f, 0.0f};
     }
 
     public static float[] getLegitRotations(Vec3d vec) {

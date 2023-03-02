@@ -94,8 +94,9 @@ public class ModuleManager
         this.modules.add(new AutoTotem());
         this.modules.add(new HoleSnap());
         this.modules.add(new GreenText());
-
-
+        this.modules.add(new AutoLog());
+        this.modules.add(new Velocity());
+        this.modules.add(new Suicide());
     }
 
     public Module getModuleByName(String name) {
@@ -247,7 +248,7 @@ public class ModuleManager
         }
         this.modules.forEach(module -> {
             if (module.getBind().getKey() == eventKey) {
-                module.toggle();
+                module.toggle(silent);
             }
         });
     }

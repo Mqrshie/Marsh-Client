@@ -8,10 +8,8 @@ import me.alpha432.oyvey.event.events.Render3DEvent;
 import me.alpha432.oyvey.features.Feature;
 import me.alpha432.oyvey.features.command.Command;
 import me.alpha432.oyvey.features.modules.client.HUD;
-import me.alpha432.oyvey.features.modules.combat.AutoTotem;
 import me.alpha432.oyvey.features.setting.Bind;
 import me.alpha432.oyvey.features.setting.Setting;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -127,7 +125,7 @@ public class Module
         this.onDisable();
     }
 
-    public void toggle() {
+    public void toggle(boolean silent) {
         ClientEvent event = new ClientEvent(!this.isEnabled() ? 1 : 0, this);
         MinecraftForge.EVENT_BUS.post(event);
         if (!event.isCanceled()) {

@@ -112,7 +112,7 @@ public class Selftrap
             int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
             int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
             if (obbySlot == -1 && eChestSot == -1) {
-                this.toggle();
+                this.toggle(silent);
             }
             Selftrap.mc.player.inventory.currentItem = obbySlot == -1 ? eChestSot : obbySlot;
             Selftrap.mc.playerController.updateController();
@@ -132,7 +132,7 @@ public class Selftrap
         int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
         int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
         if (obbySlot == -1 && eChestSot == -1) {
-            this.toggle();
+            this.toggle(silent);
         }
         this.blocksThisTick = 0;
         this.isSneaking = EntityUtil.stopSneaking(this.isSneaking);

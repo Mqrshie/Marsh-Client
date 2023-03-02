@@ -41,7 +41,7 @@ public class AutoMinecart
     @Override
     public void onEnable() {
         if (AutoMinecart.fullNullCheck()) {
-            this.toggle();
+            this.toggle(silent);
         }
         this.wait = 0;
         this.waitFlint = 0;
@@ -53,7 +53,7 @@ public class AutoMinecart
     public void onUpdate() {
         EntityPlayer target;
         if (AutoMinecart.fullNullCheck()) {
-            this.toggle();
+            this.toggle(silent);
         }
         int i = InventoryUtil.findStackInventory(Items.TNT_MINECART);
         for (int j = 0; j < 9; ++j) {
@@ -68,7 +68,7 @@ public class AutoMinecart
         int picSlot = InventoryUtil.getItemHotbar(Items.DIAMOND_PICKAXE);
         if (tntSlot == -1 || railSlot == -1 || flintSlot == -1 || picSlot == -1 || this.web.getValue().booleanValue() && webSlot == -1) {
             Command.sendMessage("<" + this.getDisplayName() + "> " + ChatFormatting.RED + "No (tnt minecart/activator rail/flint/pic/webs) in hotbar disabling...");
-            this.toggle();
+            this.toggle(silent);
         }
         if ((target = this.getTarget()) == null) {
             return;
