@@ -125,7 +125,7 @@ public class Module
         this.onDisable();
     }
 
-    public void toggle(boolean silent) {
+    public void toggle() {
         ClientEvent event = new ClientEvent(!this.isEnabled() ? 1 : 0, this);
         MinecraftForge.EVENT_BUS.post(event);
         if (!event.isCanceled()) {

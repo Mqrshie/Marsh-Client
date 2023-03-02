@@ -248,7 +248,7 @@ public class ModuleManager
         }
         this.modules.forEach(module -> {
             if (module.getBind().getKey() == eventKey) {
-                module.toggle(silent);
+                module.toggle();
             }
         });
     }

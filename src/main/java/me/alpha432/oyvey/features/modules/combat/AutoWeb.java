@@ -123,7 +123,7 @@ public class AutoWeb
         }
         if (obbySlot == -1) {
             Command.sendMessage("<" + this.getDisplayName() + "> " + ChatFormatting.RED + "No Webs in hotbar disabling...");
-            this.toggle(silent);
+            this.toggle();
             return true;
         }
         if (AutoWeb.mc.player.inventory.currentItem != this.lastHotbarSlot && AutoWeb.mc.player.inventory.currentItem != obbySlot) {

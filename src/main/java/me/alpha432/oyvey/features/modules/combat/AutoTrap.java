@@ -114,7 +114,7 @@ public class AutoTrap
         this.placements = 0;
         int obbySlot2 = InventoryUtil.findHotbarBlock(BlockObsidian.class);
         if (obbySlot2 == -1) {
-            this.toggle(silent);
+            this.toggle();
         }
         int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
         if (this.isOff()) {
@@ -166,7 +166,7 @@ public class AutoTrap
             int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
             int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
             if (obbySlot == -1 && eChestSot == -1) {
-                this.toggle(silent);
+                this.toggle();
             }
             if (this.smartRotate) {
                 AutoTrap.mc.player.inventory.currentItem = obbySlot == -1 ? eChestSot : obbySlot;

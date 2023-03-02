@@ -183,7 +183,7 @@ public class Surround
         int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
         int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
         if (obbySlot == -1 && eChestSot == -1) {
-            this.toggle(silent);
+            this.toggle();
         }
         this.offHand = InventoryUtil.isBlock(Surround.mc.player.getHeldItemOffhand().getItem(), BlockObsidian.class);
         isPlacing = false;
@@ -221,7 +221,7 @@ public class Surround
             int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
             int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
             if (obbySlot == -1 && eChestSot == -1) {
-                this.toggle(silent);
+                this.toggle();
             }
             isPlacing = true;
             Surround.mc.player.inventory.currentItem = obbySlot == -1 ? eChestSot : obbySlot;

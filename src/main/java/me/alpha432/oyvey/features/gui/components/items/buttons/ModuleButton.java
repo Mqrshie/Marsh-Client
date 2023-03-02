@@ -140,7 +140,7 @@ public class ModuleButton
 
     @Override
     public void toggle() {
-        this.module.toggle(silent);
+        this.module.toggle();
     }
 
     @Override
