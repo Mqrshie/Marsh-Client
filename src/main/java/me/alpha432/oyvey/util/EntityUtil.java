@@ -91,6 +91,11 @@ public class EntityUtil
         return EntityUtil.getInterpolatedAmount(entity, partialTicks, partialTicks, partialTicks);
     }
 
+    public static boolean isBurrow(final Entity entity) {
+        final BlockPos blockPos = new BlockPos(entity.posX, entity.posY, entity.posZ);
+        return EntityUtil.mc.world.getBlockState(blockPos).getBlock().equals(Blocks.OBSIDIAN) || EntityUtil.mc.world.getBlockState(blockPos).getBlock().equals(Blocks.ENDER_CHEST);
+    }
+
     public static boolean holding32k(final EntityPlayer player) {
         return is32k(player.getHeldItemMainhand());
     }

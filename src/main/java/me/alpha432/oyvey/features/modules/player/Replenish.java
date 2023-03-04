@@ -39,18 +39,19 @@ public class Replenish
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (Replenish.mc.currentScreen != null) {
-            return;
+            return 0;
         }
         if (!this.timer.passedMs(this.delay.getValue() * 1000)) {
-            return;
+            return 0;
         }
         for (int l_I = 0; l_I < 9; ++l_I) {
             if (!this.RefillSlotIfNeed(l_I)) continue;
             this.timer.reset();
-            return;
+            return l_I;
         }
+        return 0;
     }
 
     private boolean RefillSlotIfNeed(int p_Slot) {

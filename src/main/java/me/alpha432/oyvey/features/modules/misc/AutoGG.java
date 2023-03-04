@@ -46,9 +46,9 @@ public class AutoGG
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (AutoGG.nullCheck()) {
-            return;
+            return 0;
         }
         if (this.targetedPlayers == null) {
             this.targetedPlayers = new ConcurrentHashMap();
@@ -68,6 +68,7 @@ public class AutoGG
                 this.targetedPlayers.put(name, timeout - 1);
             }
         });
+        return 0;
     }
 
     @SubscribeEvent

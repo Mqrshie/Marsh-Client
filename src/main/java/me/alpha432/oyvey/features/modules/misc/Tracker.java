@@ -33,13 +33,14 @@ public class Tracker
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (this.trackedPlayer == null) {
             this.trackedPlayer = EntityUtil.getClosestEnemy(1000.0);
         } else if (this.usedStacks != this.usedExp / 64) {
             this.usedStacks = this.usedExp / 64;
             Command.sendMessage(TextUtil.coloredString(this.trackedPlayer.getName() + " has used " + this.usedStacks + " stacks of XP!", HUD.getInstance().commandColor.getValue()));
         }
+        return 0;
     }
 
     public void onSpawnEntity(Entity entity) {

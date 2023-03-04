@@ -29,7 +29,7 @@ class DonkeyFinder
     }
 
     @Override
-    public void onUpdate ( ) {
+    public int onUpdate ( ) {
         for (Entity entity : DonkeyFinder.mc.world.getLoadedEntityList ( )) {
             if ( ! ( entity instanceof EntityDonkey) || this.donkey.contains ( entity ) ) continue;
             if ( this.Chat.getValue ( ) ) {
@@ -39,5 +39,6 @@ class DonkeyFinder
             if ( ! this.Sound.getValue ( ) ) continue;
             DonkeyFinder.mc.player.playSound ( SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE , 1.0f , 1.0f );
         }
+        return 0;
     }
 }

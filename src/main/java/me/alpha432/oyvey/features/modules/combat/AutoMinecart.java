@@ -50,7 +50,7 @@ public class AutoMinecart
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         EntityPlayer target;
         if (AutoMinecart.fullNullCheck()) {
             this.toggle();
@@ -71,7 +71,7 @@ public class AutoMinecart
             this.toggle();
         }
         if ((target = this.getTarget()) == null) {
-            return;
+            return i;
         }
         BlockPos pos = new BlockPos(target.posX, target.posY, target.posZ);
         Vec3d hitVec = new Vec3d(pos).add(0.0, -0.5, 0.0);
@@ -98,7 +98,7 @@ public class AutoMinecart
             }
             if (this.wait < this.delay.getValue()) {
                 ++this.wait;
-                return;
+                return i;
             }
             this.check = false;
             this.wait = 0;
@@ -111,6 +111,7 @@ public class AutoMinecart
                 BlockUtil.rightClickBlock(pos.down(), hitVec, EnumHand.MAIN_HAND, EnumFacing.UP, this.packet.getValue());
             }
         }
+        return i;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SelfFill
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         BlockPos pos = new BlockPos(SelfFill.mc.player.posX, SelfFill.mc.player.posY, SelfFill.mc.player.posZ);
         if (SelfFill.mc.world.getBlockState(pos.down()).getBlock() == Blocks.AIR && BlockUtil.isPositionPlaceable(pos.down(), false) == 3) {
             BlockUtil.placeBlock(pos.down(), EnumHand.MAIN_HAND, false, this.packet.getValue(), false);
@@ -33,6 +33,7 @@ public class SelfFill
             SelfFill.mc.player.setPosition(SelfFill.mc.player.posX, SelfFill.mc.player.posY - 1.3, SelfFill.mc.player.posZ);
             this.toggle();
         }
+        return 0;
     }
 }
 

@@ -65,11 +65,12 @@ public class Speedmine
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (Speedmine.fullNullCheck()) {
-            return;
+            return 0;
         }
         Speedmine.mc.playerController.blockHitDelay = 0;
+        return 0;
     }
 
     @Override

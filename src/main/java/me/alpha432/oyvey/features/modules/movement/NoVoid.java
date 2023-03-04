@@ -11,20 +11,21 @@ public class NoVoid
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (NoVoid.fullNullCheck()) {
-            return;
+            return 0;
         }
         if (!NoVoid.mc.player.noClip && NoVoid.mc.player.posY <= 0.0) {
             RayTraceResult trace = NoVoid.mc.world.rayTraceBlocks(NoVoid.mc.player.getPositionVector(), new Vec3d(NoVoid.mc.player.posX, 0.0, NoVoid.mc.player.posZ), false, false, false);
             if (trace != null && trace.typeOfHit == RayTraceResult.Type.BLOCK) {
-                return;
+                return 0;
             }
             NoVoid.mc.player.setVelocity(0.0, 0.0, 0.0);
             if (NoVoid.mc.player.getRidingEntity() != null) {
                 NoVoid.mc.player.getRidingEntity().setVelocity(0.0, 0.0, 0.0);
             }
         }
+        return 0;
     }
 }
 

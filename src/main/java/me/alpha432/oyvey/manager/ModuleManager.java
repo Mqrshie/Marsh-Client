@@ -78,7 +78,6 @@ public class ModuleManager
         this.modules.add(new Speed());
         this.modules.add(new Step());
         this.modules.add(new Flight());
-        this.modules.add(new Scaffold());
         this.modules.add(new PacketFly());
         this.modules.add(new FastPlace());
         this.modules.add(new ESP());
@@ -99,6 +98,15 @@ public class ModuleManager
         this.modules.add(new Suicide());
         this.modules.add(new MobOwner());
         this.modules.add(new FullBright());
+        this.modules.add(new AntiLevitate());
+        this.modules.add(new PopChams());
+        this.modules.add(new ChestSwap());
+        this.modules.add(new Scaffold());
+        this.modules.add(new IceSpeed());
+        this.modules.add(new NoRender());
+        this.modules.add(new AutoWither());
+        this.modules.add(new Nametags());
+        this.modules.add(new Translator());
     }
 
     public Module getModuleByName(String name) {

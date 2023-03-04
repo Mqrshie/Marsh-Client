@@ -97,7 +97,7 @@ public class Freecam extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         Freecam.mc.player.noClip = true;
         Freecam.mc.player.setVelocity(0.0, 0.0, 0.0);
         Freecam.mc.player.jumpMovementFactor = this.speed.getValue().floatValue();
@@ -121,6 +121,7 @@ public class Freecam extends Module {
             final EntityPlayerSP player2 = Freecam.mc.player;
             player2.motionY -= this.speed.getValue();
         }
+        return 0;
     }
 
     @Override

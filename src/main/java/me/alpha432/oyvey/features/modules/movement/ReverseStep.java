@@ -28,14 +28,14 @@ public class ReverseStep
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (ReverseStep.fullNullCheck()) {
-            return;
+            return 0;
         }
         IBlockState touchingState = ReverseStep.mc.world.getBlockState(new BlockPos(ReverseStep.mc.player.posX, ReverseStep.mc.player.posY, ReverseStep.mc.player.posZ).down(2));
         IBlockState touchingState2 = ReverseStep.mc.world.getBlockState(new BlockPos(ReverseStep.mc.player.posX, ReverseStep.mc.player.posY, ReverseStep.mc.player.posZ).down(3));
         if (ReverseStep.mc.player.isInLava() || ReverseStep.mc.player.isInWater()) {
-            return;
+            return 0;
         }
         if (touchingState.getBlock() == Blocks.BEDROCK || touchingState.getBlock() == Blocks.OBSIDIAN) {
             if (ReverseStep.mc.player.onGround) {
@@ -44,6 +44,7 @@ public class ReverseStep
         } else if ((this.twoBlocks.getValue().booleanValue() && touchingState2.getBlock() == Blocks.BEDROCK || this.twoBlocks.getValue().booleanValue() && touchingState2.getBlock() == Blocks.OBSIDIAN) && ReverseStep.mc.player.onGround) {
             ReverseStep.mc.player.motionY -= 1.0;
         }
+        return 0;
     }
 }
 

@@ -28,13 +28,14 @@ public class AutoTotem extends Module
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (this.nullCheck()) {
-            return;
+            return 0;
         }
         if (this.shouldTotem() && this.doublE.getValue()) {
             this.doTotem();
         }
+        return 0;
     }
 
     public void doTotem() {

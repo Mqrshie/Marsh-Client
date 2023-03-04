@@ -24,13 +24,14 @@ public class FullBright
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (this.mode.getValue() == Mode.GAMMA) {
             FullBright.mc.gameSettings.gammaSetting = 1000.0f;
         }
         if (this.mode.getValue() == Mode.POTION) {
             FullBright.mc.player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 5210));
         }
+        return 0;
     }
 
     @Override

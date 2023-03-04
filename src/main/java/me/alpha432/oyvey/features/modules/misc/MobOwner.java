@@ -22,9 +22,9 @@ public class MobOwner
     }
 
     @Override
-    public void onUpdate() {
+    public int onUpdate() {
         if (fullNullCheck()) {
-            return;
+            return 0;
         }
         if (PlayerUtil2.timer.passedS(5.0)) {
             for (final Map.Entry<Entity, UUID> entry : this.toLookUp.entrySet()) {
@@ -90,6 +90,7 @@ public class MobOwner
                 }
             }
         }
+        return 0;
     }
 
     @Override

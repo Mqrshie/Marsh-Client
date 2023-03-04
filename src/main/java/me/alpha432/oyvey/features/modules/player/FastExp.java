@@ -12,13 +12,14 @@ public class FastExp extends Module {
         }
 
         @Override
-        public void onUpdate() {
+        public int onUpdate() {
         if (mc.world == null || mc.player == null)
-        return;
+            return 0;
 
         if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem() == Items.EXPERIENCE_BOTTLE) {
         mc.rightClickDelayTimer = 0;
         }
 
+            return 0;
         }
         }

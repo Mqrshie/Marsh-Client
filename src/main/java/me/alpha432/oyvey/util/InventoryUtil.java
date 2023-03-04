@@ -2,6 +2,7 @@ package me.alpha432.oyvey.util;
 
 import me.alpha432.oyvey.OyVey;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,6 +44,19 @@ public class InventoryUtil
             }
         }
         return -1;
+    }
+
+    public static int findInventoryWool(boolean offHand) {
+        AtomicInteger slot = new AtomicInteger();
+        slot.set(-1);
+        for (Map.Entry<Integer, ItemStack> entry : InventoryUtil.getInventoryAndHotbarSlots().entrySet()) {
+            if (!(entry.getValue().getItem() instanceof ItemBlock)) continue;
+            ItemBlock wool = (ItemBlock) entry.getValue().getItem();
+            if (wool.getBlock().material != Material.CLOTH || entry.getKey() == 45 && !offHand) continue;
+            slot.set(entry.getKey());
+            return slot.get();
+        }
+        return slot.get();
     }
 
     public static int getItemHotbar(final Item input) {
