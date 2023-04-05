@@ -51,12 +51,12 @@ public class AutoArmor
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (AutoArmor.fullNullCheck() || AutoArmor.mc.currentScreen instanceof GuiContainer && !(AutoArmor.mc.currentScreen instanceof GuiInventory)) {
-            return;
+            return 0;
         }
         if (this.taskList.isEmpty()) {
-            int slot;
+            int slot = 0;
             ItemStack feet;
             int slot2;
             ItemStack legging;
@@ -114,7 +114,7 @@ public class AutoArmor
                         }
                     }
                 }
-                return;
+                return slot;
             }
             this.flag = false;
             ItemStack helm = AutoArmor.mc.player.inventoryContainer.getSlot(5).getStack();
@@ -141,6 +141,7 @@ public class AutoArmor
             }
             this.timer.reset();
         }
+        return 0;
     }
 
     private void takeOffSlot(int slot) {

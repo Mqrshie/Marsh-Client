@@ -1,9 +1,11 @@
 package me.alpha432.oyvey.util;
 
+import me.alpha432.oyvey.features.modules.client.ClickGui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
@@ -23,6 +25,40 @@ public class RotationUtil
         float f = (float)LuigiRotationUtil.normalizeAngle(Math.toDegrees(Math.atan2(vec3d.z, vec3d.x)) - 90.0);
         float f2 = (float)LuigiRotationUtil.normalizeAngle(Math.toDegrees(-Math.atan2(vec3d.y, d)));
         return new Vec2f(f, f2);
+    }
+
+    public static boolean isInFov(BlockPos pos) {
+        return pos != null && (RotationUtil.mc.player.getDistanceSq(pos) < 4.0 || RotationUtil.yawDist(pos) < (double) (RotationUtil.getHalvedfov() + 2.0f));
+    }
+
+    public static boolean isInFov(Entity entity) {
+        return entity != null && (RotationUtil.mc.player.getDistanceSq(entity) < 4.0 || RotationUtil.yawDist(entity) < (double) (RotationUtil.getHalvedfov() + 2.0f));
+    }
+
+    public static double yawDist(BlockPos pos) {
+        if (pos != null) {
+            Vec3d difference = new Vec3d(pos).subtract(RotationUtil.mc.player.getPositionEyes(mc.getRenderPartialTicks()));
+            double d = Math.abs((double) RotationUtil.mc.player.rotationYaw - (Math.toDegrees(Math.atan2(difference.z, difference.x)) - 90.0)) % 360.0;
+            return d > 180.0 ? 360.0 - d : d;
+        }
+        return 0.0;
+    }
+
+    public static double yawDist(Entity e) {
+        if (e != null) {
+            Vec3d difference = e.getPositionVector().add(0.0, e.getEyeHeight() / 2.0f, 0.0).subtract(RotationUtil.mc.player.getPositionEyes(mc.getRenderPartialTicks()));
+            double d = Math.abs((double) RotationUtil.mc.player.rotationYaw - (Math.toDegrees(Math.atan2(difference.z, difference.x)) - 90.0)) % 360.0;
+            return d > 180.0 ? 360.0 - d : d;
+        }
+        return 0.0;
+    }
+
+    public static float getFov() {
+        return ClickGui.getInstance().customFov.getValue() != false ? ClickGui.getInstance().fov.getValue().floatValue() : RotationUtil.mc.gameSettings.fovSetting;
+    }
+
+    public static float getHalvedfov() {
+        return RotationUtil.getFov() / 2.0f;
     }
 
     public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {

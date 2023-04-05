@@ -32,9 +32,10 @@ public class Killaura extends Module {
         super("Killaura", "Kills aura.", Module.Category.COMBAT, true, false, false);
     }
 
-    public void onTick() {
+    public int onTick() {
         if (!this.rotate.getValue().booleanValue())
             doKillaura();
+        return 0;
     }
 
     @SubscribeEvent

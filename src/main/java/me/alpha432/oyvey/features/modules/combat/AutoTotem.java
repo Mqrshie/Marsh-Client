@@ -18,13 +18,14 @@ public class AutoTotem extends Module
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (this.nullCheck()) {
-            return;
+            return 0;
         }
         if (this.shouldTotem()) {
             this.doTotem();
         }
+        return 0;
     }
 
     @Override

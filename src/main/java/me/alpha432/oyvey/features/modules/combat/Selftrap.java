@@ -45,10 +45,11 @@ public class Selftrap
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (this.isOn() && (this.blocksPerTick.getValue() != 1 || !this.rotate.getValue().booleanValue())) {
             this.doHoleFill();
         }
+        return 0;
     }
 
     @SubscribeEvent

@@ -59,8 +59,9 @@ public class Surround
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         this.doFeetPlace();
+        return 0;
     }
 
     @Override

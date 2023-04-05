@@ -54,12 +54,13 @@ public class AutoTrap
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (AutoTrap.fullNullCheck()) {
-            return;
+            return 0;
         }
         this.smartRotate = false;
         this.doTrap();
+        return 0;
     }
 
     @Override

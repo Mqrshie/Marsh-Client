@@ -87,6 +87,7 @@ public class HoleUtilSafety
         return arrayList;
     }
 
+
     public static boolean is2x2(BlockPos blockPos, boolean bl) {
         if (bl && !BlockUtil.isAir(blockPos)) {
             return false;

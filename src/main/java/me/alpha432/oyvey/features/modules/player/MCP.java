@@ -23,7 +23,7 @@ public class MCP
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (Mouse.isButtonDown(2)) {
             if (!this.clicked) {
                 this.throwPearl();
@@ -32,6 +32,7 @@ public class MCP
         } else {
             this.clicked = false;
         }
+        return 0;
     }
 
     private void throwPearl() {

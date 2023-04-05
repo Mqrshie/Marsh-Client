@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.misc;
+package me.alpha432.oyvey.features.modules.chat;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
@@ -20,7 +20,7 @@ public class AutoGG
     private ConcurrentHashMap<String, Integer> targetedPlayers = null;
 
     public AutoGG() {
-        super("AutoGG", "Sends msg after you kill someone", Module.Category.MISC, true, false, false);
+        super("AutoGG", "Sends msg after you kill someone", Category.CHAT, true, false, false);
         this.setInstance();
     }
 

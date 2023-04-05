@@ -5,7 +5,7 @@ import me.alpha432.oyvey.event.events.PacketEvent;
 import me.alpha432.oyvey.event.events.Render3DEvent;
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
-import me.alpha432.oyvey.features.modules.misc.AutoGG;
+import me.alpha432.oyvey.features.modules.chat.AutoGG;
 import me.alpha432.oyvey.features.setting.Setting;
 import me.alpha432.oyvey.util.Timer;
 import me.alpha432.oyvey.util.*;
@@ -179,8 +179,9 @@ public class AutoCrystal
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         this.onCrystal();
+        return 0;
     }
 
     @Override

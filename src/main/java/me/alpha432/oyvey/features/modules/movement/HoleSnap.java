@@ -8,7 +8,6 @@ import me.alpha432.oyvey.util.Timer;
 import me.alpha432.oyvey.features.command.Command;
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
-import me.alpha432.oyvey.features.modules.movement.Speed;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +27,7 @@ public class HoleSnap
     public /* synthetic */ Setting<Mode> mode;
 
     @Override
-    public void onTick() {
+    public int onTick() {
         BlockPos blockPos2;
         if (this.mode.getValue() == Mode.Instant) {
             blockPos2 = OyVey.holeManager.calcHoles().stream().min(Comparator.comparing(blockPos -> HoleSnap.mc.player.getDistance((double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ()))).orElse(null);
@@ -47,30 +46,30 @@ public class HoleSnap
         }
         if (this.mode.getValue() == Mode.Motion) {
             if (HoleSnap.fullNullCheck()) {
-                return;
+                return 0;
             }
             if (EntityUtil.isInLiquid()) {
                 this.disable();
-                return;
+                return 0;
             }
             HoleSnap.mc.timer.tickLength = 50.0f / this.timerfactor.getValue().floatValue();
             this.holes = LuigiRotationUtil.getTargetHoleVec3D(this.range2.getValue().floatValue());
             if (this.holes == null) {
                 Command.sendMessage("Unable to find hole, disabling HoleSnap");
                 this.disable();
-                return;
+                return 0;
             }
             if (this.timer.passedMs(500L)) {
                 this.disable();
-                return;
+                return 0;
             }
             if (HoleUtilSafety.isObbyHole(PlayerUtil.getPlayerPos()) || HoleUtilSafety.isBedrockHoles(PlayerUtil.getPlayerPos())) {
                 this.disable();
-                return;
+                return 0;
             }
             if (HoleSnap.mc.world.getBlockState(this.holes.pos1).getBlock() != Blocks.AIR) {
                 this.disable();
-                return;
+                return 0;
             }
             blockPos2 = this.holes.pos1;
             Vec3d vec3d = HoleSnap.mc.player.getPositionVector();
@@ -81,6 +80,7 @@ public class HoleSnap
             HoleSnap.mc.player.motionX = -Math.sin(d) * d3;
             HoleSnap.mc.player.motionZ = Math.cos(d) * d3;
         }
+        return 0;
     }
 
     @Override

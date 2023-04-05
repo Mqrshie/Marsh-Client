@@ -15,6 +15,7 @@ import me.alpha432.oyvey.features.modules.misc.*;
 import me.alpha432.oyvey.features.modules.movement.*;
 import me.alpha432.oyvey.features.modules.player.*;
 import me.alpha432.oyvey.features.modules.render.*;
+import me.alpha432.oyvey.features.modules.chat.*;
 import me.alpha432.oyvey.util.Util;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -103,10 +104,8 @@ public class ModuleManager
         this.modules.add(new ChestSwap());
         this.modules.add(new Scaffold());
         this.modules.add(new IceSpeed());
-        this.modules.add(new NoRender());
         this.modules.add(new AutoWither());
-        this.modules.add(new Nametags());
-        this.modules.add(new Translator());
+        this.modules.add(new Anchor());
     }
 
     public Module getModuleByName(String name) {

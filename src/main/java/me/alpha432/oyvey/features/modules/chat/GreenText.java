@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.misc;
+package me.alpha432.oyvey.features.modules.chat;
 
 import me.alpha432.oyvey.event.events.PacketEvent;
 import me.alpha432.oyvey.features.modules.Module;
@@ -10,7 +10,7 @@ public class GreenText extends Module {
     public String s;
 
     public GreenText() {
-        super("GreenText", "green.", Module.Category.MISC, true, false, false);
+        super("GreenText", "green.", Category.CHAT, true, false, false);
     }
 
     @SubscribeEvent

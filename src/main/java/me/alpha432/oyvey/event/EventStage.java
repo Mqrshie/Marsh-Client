@@ -21,4 +21,3 @@ public class EventStage
         this.stage = stage;
     }
 }
-

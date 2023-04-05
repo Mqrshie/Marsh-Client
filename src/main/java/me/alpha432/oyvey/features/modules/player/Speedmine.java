@@ -53,7 +53,7 @@ public class Speedmine
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (this.currentPos != null) {
             if (!Speedmine.mc.world.getBlockState(this.currentPos).equals(this.currentBlockState) || Speedmine.mc.world.getBlockState(this.currentPos).getBlock() == Blocks.AIR) {
                 this.currentPos = null;
@@ -62,6 +62,7 @@ public class Speedmine
                 InventoryUtil.switchToHotbarSlot(ItemSword.class, false);
             }
         }
+        return 0;
     }
 
     @Override

@@ -51,9 +51,10 @@ public class AutoWeb
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         this.smartRotate = false;
         this.doTrap();
+        return 0;
     }
 
     @Override

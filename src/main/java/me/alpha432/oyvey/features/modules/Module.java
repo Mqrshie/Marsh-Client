@@ -58,7 +58,8 @@ public class Module
 
 
 
-    public void onTick() {
+    public int onTick() {
+        return 0;
     }
 
     public void onLogin() {
@@ -191,7 +192,8 @@ public class Module
         RENDER("Render"),
         MOVEMENT("Movement"),
         PLAYER("Player"),
-        CLIENT("Client");
+        CLIENT("Client"),
+        CHAT("Chat");
 
         private final String name;
 

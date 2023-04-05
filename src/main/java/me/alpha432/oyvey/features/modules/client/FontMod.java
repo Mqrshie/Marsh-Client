@@ -62,11 +62,12 @@ public class FontMod
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (this.reloadFont) {
             OyVey.textManager.init(false);
             this.reloadFont = false;
         }
+        return 0;
     }
 }
 

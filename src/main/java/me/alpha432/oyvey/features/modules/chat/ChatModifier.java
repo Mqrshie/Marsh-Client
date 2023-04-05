@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.misc;
+package me.alpha432.oyvey.features.modules.chat;
 
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.event.events.PacketEvent;
@@ -15,7 +15,7 @@ public class ChatModifier
     public boolean check;
 
     public ChatModifier() {
-        super("BetterChat", "Modifies your chat", Module.Category.MISC, true, false, false);
+        super("BetterChat", "Modifies your chat", Category.  CHAT, true, false, false);
         this.setInstance();
     }
 

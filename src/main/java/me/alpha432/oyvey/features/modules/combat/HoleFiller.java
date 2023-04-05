@@ -75,10 +75,11 @@ public class HoleFiller extends Module {
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (this.isOn()) {
             this.doHoleFill();
         }
+        return 0;
     }
 
     @Override

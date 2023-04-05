@@ -36,7 +36,7 @@ public class AutoLog
     }
 
     @Override
-    public void onTick() {
+    public int onTick() {
         if (!AutoLog.nullCheck() && AutoLog.mc.player.getHealth() <= this.health.getValue()) {
             OyVey.moduleManager.disableModule("AutoReconnect");
             AutoLog.mc.player.connection.sendPacket(new SPacketDisconnect(new TextComponentString("AutoLogged")));
@@ -44,6 +44,7 @@ public class AutoLog
                 this.disable();
             }
         }
+        return 0;
     }
 
     @SubscribeEvent
